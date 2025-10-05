@@ -3,20 +3,21 @@
 
 // Database instance
 resource "azurerm_postgresql_flexible_server" "postgres" {
-  name                         = "postgresql-${var.project_name}"
-  location                     = azurerm_resource_group.rg.location
-  resource_group_name          = azurerm_resource_group.rg.name
-  sku_name                     = "GP_Standard_D2s_v3"
-  storage_mb                   = 32768
-  version                      = "14"
-  delegated_subnet_id          = azurerm_subnet.dbsubnet.id
-  private_dns_zone_id          = azurerm_private_dns_zone.postgres.id
-  backup_retention_days        = 7
-  geo_redundant_backup_enabled = false
-  auto_grow_enabled            = false
-  administrator_login          = var.db_username
-  administrator_password       = var.db_password
-  zone                         = "3"
+  name                          = "postgresql-${var.project_name}"
+  location                      = azurerm_resource_group.rg.location
+  resource_group_name           = azurerm_resource_group.rg.name
+  sku_name                      = "GP_Standard_D2s_v3"
+  storage_mb                    = 32768
+  version                       = "14"
+  delegated_subnet_id           = azurerm_subnet.dbsubnet.id
+  private_dns_zone_id           = azurerm_private_dns_zone.postgres.id
+  public_network_access_enabled = false
+  backup_retention_days         = 7
+  geo_redundant_backup_enabled  = false
+  auto_grow_enabled             = false
+  administrator_login           = var.db_username
+  administrator_password        = var.db_password
+  zone                          = "3"
 
   authentication {
     active_directory_auth_enabled = false
