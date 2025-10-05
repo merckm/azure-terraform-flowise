@@ -1,0 +1,11 @@
+From a cloudshell run: 
+
+az acr import --name fwdemoacr --source docker.io/flowiseai/flowise:latest --image flowiseai/flowise:latest
+
+
+On the VM instll:
+
+Azure CLI: 
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
