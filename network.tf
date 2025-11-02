@@ -14,7 +14,6 @@ resource "azurerm_subnet" "webappsubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.3.0.0/24"]
-  private_endpoint_network_policies         = "Enabled"
 
   delegation {
     name = "delegation"
@@ -34,7 +33,7 @@ resource "azurerm_subnet" "dbsubnet" {
   resource_group_name                       = azurerm_resource_group.rg.name
   virtual_network_name                      = azurerm_virtual_network.vnet.name
   address_prefixes                          = ["10.3.1.0/24"]
-  private_endpoint_network_policies         = "Enabled"
+  private_endpoint_network_policies         = "NetworkSecurityGroupEnabled"
   delegation {
     name = "delegation"
     service_delegation {
@@ -54,7 +53,6 @@ resource "azurerm_subnet" "pesubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.3.2.0/24"]
-  private_endpoint_network_policies         = "Enabled"
 }
 
 resource "azurerm_subnet" "vmsubnet" {
@@ -62,7 +60,6 @@ resource "azurerm_subnet" "vmsubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.3.3.0/24"]
-  private_endpoint_network_policies         = "Enabled"
 }
 
 resource "azurerm_subnet" "bastionsubnet" {
@@ -70,7 +67,6 @@ resource "azurerm_subnet" "bastionsubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.3.5.0/24"]
-  private_endpoint_network_policies         = "Enabled"
 }
 
 resource "azurerm_private_dns_zone" "postgres" {

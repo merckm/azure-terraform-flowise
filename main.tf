@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "sa" {
 // File share
 resource "azurerm_storage_share" "flowise-share" {
   name                 = "flowise"
-  storage_account_name = azurerm_storage_account.sa.name
+  storage_account_id    = azurerm_storage_account.sa.id
   quota                = 50
 }
 

@@ -11,10 +11,10 @@ resource "azurerm_postgresql_flexible_server" "postgres" {
   version                       = "14"
   delegated_subnet_id           = azurerm_subnet.dbsubnet.id
   private_dns_zone_id           = azurerm_private_dns_zone.postgres.id
-  public_network_access_enabled = false
   backup_retention_days         = 7
   geo_redundant_backup_enabled  = false
   auto_grow_enabled             = false
+  public_network_access_enabled = false
   administrator_login           = var.db_username
   administrator_password        = var.db_password
   zone                          = "3"
