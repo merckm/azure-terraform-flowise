@@ -64,18 +64,19 @@ resource "azurerm_linux_web_app" "webapp" {
     vnet_route_all_enabled = true
     container_registry_managed_identity_client_id = azurerm_user_assigned_identity.wabapp_uami.client_id
     container_registry_use_managed_identity = true
+    ip_restriction_default_action                 = "Deny" 
     dynamic "ip_restriction" {
       for_each = var.webapp_ip_rules
       content {
         name       = ip_restriction.value.name
         ip_address = ip_restriction.value.ip_address
+        priority   = ip_restriction.value.priority
+        action     = ip_restriction.value.action
       }
     }
     application_stack {
       docker_image_name        = var.flowise_image
       docker_registry_url      = "https://${azurerm_container_registry.acr.login_server}"
-      # docker_registry_username = azurerm_container_registry.acr.admin_username
-      # docker_registry_password = azurerm_container_registry.acr.admin_password
     }
   }
 

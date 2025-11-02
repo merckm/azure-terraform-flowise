@@ -107,6 +107,12 @@ resource "azurerm_linux_virtual_machine" "vm_db_access" {
     public_key = azapi_resource_action.ssh_public_key_gen.output.publicKey
   }
 
+  // Add User Assigned Identity to allow ACR pull for testing
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.wabapp_uami.id]
+  }
+
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.boot_storage_account.primary_blob_endpoint
   }

@@ -98,3 +98,18 @@ variable "username" {
   description = "The username for the local account that will be created on the new VM."
   default     = "azureadmin"
 }
+
+variable "my_ip" {
+  type        = string
+  description = "Your IP address for SSH access to the VM."
+}
+
+variable "model_deployments" {
+  type        = map(object({
+    model_name    = string
+    model_version = string
+    sku_name      = string
+    sku_capacity  = number
+  }))
+  description = "A map of model deployments with their configurations."
+}
